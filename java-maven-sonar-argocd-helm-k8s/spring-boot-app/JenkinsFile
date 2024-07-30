@@ -21,7 +21,7 @@ pipeline{
     stage('Static Code Analysis') {
       steps {
                 withSonarQubeEnv('sonar-server') {
-                    bat '''mvn clean verify sonar:sonar -Dsonar.host.url=http://localhost:9000''' 
+                    sh '''mvn sonar:sonar -Dsonar.host.url=http://35.154.28.74:9000''' 
                     echo 'SonarQube Analysis Completed'
                 }
       }
