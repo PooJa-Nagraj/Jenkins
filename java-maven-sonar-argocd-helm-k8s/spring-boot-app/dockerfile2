@@ -1,0 +1,11 @@
+FROM techiescamp/jdk-17:1.0.0
+
+# Simply the artifact path
+#ARG artifact=target/spring-boot-web.jar
+
+WORKDIR /app
+COPY . .
+RUN mvn clean package
+
+# This should not be changed
+ENTRYPOINT ["java","-jar","target/spring-boot-web.jar"]
