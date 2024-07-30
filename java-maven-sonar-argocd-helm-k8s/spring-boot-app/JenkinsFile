@@ -21,7 +21,7 @@ pipeline{
     stage('Static Code Analysis') {
       steps {
                 withSonarQubeEnv('sonarserver') {
-                    sh '''cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn sonar:sonar -Dsonar.host.url=http://35.154.28.74:9000''' 
+                    sh '''cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn sonar:sonar -Dsonar.host.url=${env.sonarserver}''' 
                     echo 'SonarQube Analysis Completed'
                 }
       }
