@@ -18,14 +18,14 @@ pipeline{
                 
             }
         }
-    stage('Static Code Analysis') {
-      steps {
-                withSonarQubeEnv('sonarserver') {
-                    sh """cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn sonar:sonar -Dsonar.host.url=${env.sonarserver}"""
-                    echo 'SonarQube Analysis Completed'
-                }
-      }
-    }
+#    stage('Static Code Analysis') {
+#      steps {
+#                withSonarQubeEnv('sonarserver') {
+ #                   sh """cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn sonar:sonar -Dsonar.host.url=${env.sonarserver}"""
+#                    echo 'SonarQube Analysis Completed'
+ #               }
+ #     }
+  #  }
     stage('Build and Push Docker Image') {
       environment {
         DOCKER_IMAGE = "pooja/demo-arg:${BUILD_NUMBER}"
