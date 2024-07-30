@@ -1,13 +1,17 @@
-# You can change this base image to anything else
-# But make sure to use the correct version of Java
-FROM adoptopenjdk/openjdk11:alpine-jre
+
+FROM techiescamp/jdk-17:1.0.0 AS base
 
 # Simply the artifact path
-ARG artifact=target/spring-boot-web.jar
+#ARG artifact=target/spring-boot-web.jar
+WORKDIR /app
+COPY . .
+RUN mvn clean package
 
-WORKDIR /opt/app
+FROM gcr.io/distroless/java17-debian12
 
-COPY ${artifact} app.jar
-
+COPY --from=base /app/target/spring-boot-web.jar ./app.jar
 # This should not be changed
 ENTRYPOINT ["java","-jar","app.jar"]
+
+
+
