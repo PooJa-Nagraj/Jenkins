@@ -21,7 +21,7 @@ pipeline{
     stage('Static Code Analysis') {
       steps {
         withCredentials([string(credentialsId: 'sonar-token', variable: 'sonar-token')]) {
-          sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn sonar:sonar -Dsonar.login=$sonar-token -Dsonar.host.url=${sonar-server}'
+          sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn sonar:sonar -Dsonar.login=$sonar-token -Dsonar.host.url=${http://35.154.28.74:9000}'
         }
       }
     }
