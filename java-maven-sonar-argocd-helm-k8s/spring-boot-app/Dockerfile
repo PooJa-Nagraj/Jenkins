@@ -1,4 +1,3 @@
-
 FROM techiescamp/jdk-17:1.0.0 AS base
 
 # Simply the artifact path
